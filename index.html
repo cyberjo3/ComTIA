@@ -1,506 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="icon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompTIA Security+ SY0-701 - 100 Practice Questions</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --card-border: #334155;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-red: #ef4444;
-            --accent-blue: #38bdf8;
-            --accent-green: #22c55e;
-            --accent-amber: #f59e0b;
-            --option-bg: #0f172a;
-            --option-hover: #334155;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security+ SY0-701 Practice — Virunpon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDEFF1; --surface:#FFFFFF; --ink:#16202B; --ink-soft:#51606D; --ink-faint:#8A97A3;
+    --accent:#2C6E8C; --accent-deep:#1D4E66; --success:#3F7D57; --success-bg:#E4F1E9;
+    --danger:#B3413A; --danger-bg:#F8E7E5; --line:#CBD4DB;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px; margin:0 auto; padding:28px 20px 80px;}
+  header{margin-bottom:24px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent-deep); margin-bottom:8px;}
+  h1{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700;}
+  .sub{color:var(--ink-soft); font-size:14.5px; margin-top:6px;}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
+  .modebar{display:flex; gap:8px; margin:20px 0 24px; flex-wrap:wrap;}
+  .modebtn{
+    font-family:'IBM Plex Sans',sans-serif; font-size:13.5px; font-weight:500; padding:9px 16px;
+    border:1px solid var(--line); background:var(--surface); border-radius:6px; cursor:pointer; color:var(--ink-soft);
+  }
+  .modebtn.active{background:var(--accent-deep); color:#fff; border-color:var(--accent-deep);}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 20px 12px;
-        }
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:24px; margin-bottom:16px;}
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+  .progress-row{display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-faint); margin-bottom:14px;}
+  .bar{height:5px; background:var(--line); border-radius:3px; overflow:hidden; margin-bottom:20px;}
+  .bar-fill{height:100%; background:var(--accent); transition:width .3s ease;}
 
-        header {
-            text-align: center;
-            padding: 24px 16px;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
-        }
+  .qtext{font-size:17px; font-weight:500; margin-bottom:18px; line-height:1.5;}
+  .opt{
+    display:block; width:100%; text-align:left; padding:12px 14px; margin-bottom:9px;
+    border:1px solid var(--line); border-radius:6px; background:var(--surface); cursor:pointer; font-size:14.5px; color:var(--ink);
+  }
+  .opt:hover{border-color:var(--accent);}
+  .opt.correct{background:var(--success-bg); border-color:var(--success); color:var(--success);}
+  .opt.wrong{background:var(--danger-bg); border-color:var(--danger); color:var(--danger);}
+  .opt[disabled]{cursor:default;}
 
-        .badge-cert {
-            display: inline-block;
-            background-color: var(--accent-red);
-            color: #fff;
-            font-weight: bold;
-            font-size: 0.85rem;
-            padding: 4px 14px;
-            border-radius: 9999px;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
+  .explain{margin-top:14px; padding:12px 14px; background:var(--bg); border-radius:6px; font-size:13.5px; color:var(--ink-soft); display:none;}
+  .explain.show{display:block;}
 
-        h1 {
-            font-size: 1.85rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
+  .navrow{display:flex; justify-content:space-between; align-items:center; margin-top:18px;}
+  .btn{
+    font-family:'IBM Plex Sans',sans-serif; font-size:13.5px; font-weight:500; padding:9px 18px;
+    border:1px solid var(--accent-deep); background:var(--accent-deep); color:#fff; border-radius:6px; cursor:pointer;
+  }
+  .btn[disabled]{opacity:0.4; cursor:default;}
+  .btn.ghost{background:transparent; color:var(--accent-deep);}
 
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 650px;
-            margin: 0 auto 16px;
-        }
+  .scorecard{text-align:center; padding:40px 24px;}
+  .scorecard .big{font-family:'Space Grotesk',sans-serif; font-size:44px; font-weight:700; color:var(--accent-deep);}
+  .scorecard .label{color:var(--ink-soft); font-size:14px; margin-top:6px;}
 
-        .stats-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--card-border);
-        }
-
-        .stat-item {
-            background: rgba(15, 23, 42, 0.6);
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-            font-size: 0.85rem;
-        }
-        .stat-item strong {
-            color: var(--accent-blue);
-        }
-
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(8px);
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-        }
-
-        select, input, .btn {
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            border: 1px solid var(--card-border);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        select:focus, input:focus {
-            border-color: var(--accent-blue);
-        }
-
-        .search-box {
-            flex-grow: 1;
-            min-width: 180px;
-        }
-
-        .btn-toggle-all {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .btn-toggle-all:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-reset {
-            background-color: #475569;
-            color: white;
-            border: none;
-            transition: background 0.2s;
-        }
-        .btn-reset:hover {
-            background-color: #334155;
-        }
-
-        .question-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            transition: transform 0.15s, border-color 0.15s;
-        }
-
-        .question-card:hover {
-            border-color: #475569;
-        }
-
-        .q-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .q-tag {
-            font-size: 0.75rem;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-weight: 600;
-            background-color: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        .q-num {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-amber);
-        }
-
-        .q-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: #ffffff;
-        }
-
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .option-btn {
-            background-color: var(--option-bg);
-            border: 1px solid var(--card-border);
-            color: #cbd5e1;
-            padding: 10px 14px;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 0.92rem;
-            cursor: pointer;
-            transition: all 0.15s;
-            display: flex;
-            align-items: center;
-        }
-
-        .option-btn:hover:not(.locked) {
-            background-color: var(--option-hover);
-            color: #ffffff;
-            border-color: #64748b;
-        }
-
-        .option-btn.selected-correct {
-            background-color: rgba(34, 197, 94, 0.2) !important;
-            border-color: var(--accent-green) !important;
-            color: #4ade80 !important;
-            font-weight: 600;
-        }
-
-        .option-btn.selected-incorrect {
-            background-color: rgba(239, 68, 68, 0.2) !important;
-            border-color: var(--accent-red) !important;
-            color: #f87171 !important;
-        }
-
-        .option-btn.reveal-correct {
-            border-color: var(--accent-green) !important;
-            background-color: rgba(34, 197, 94, 0.1) !important;
-            color: #4ade80 !important;
-        }
-
-        .explanation-box {
-            display: none;
-            background: rgba(15, 23, 42, 0.8);
-            border-left: 4px solid var(--accent-green);
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
-            margin-top: 12px;
-        }
-
-        .explanation-box.show {
-            display: block;
-            animation: fadeIn 0.2s ease-in-out;
-        }
-
-        .explanation-box strong {
-            color: var(--accent-green);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .btn-reveal {
-            background: transparent;
-            border: 1px solid #475569;
-            color: #94a3b8;
-            font-size: 0.82rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-reveal:hover {
-            background: #334155;
-            color: #ffffff;
-            border-color: #64748b;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 10px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--card-border);
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.4rem; }
-            .controls { flex-direction: column; }
-            .question-card { padding: 16px; }
-        }
-    </style>
+  .study-item{border-bottom:1px solid var(--line); padding:16px 0;}
+  .study-item:last-child{border-bottom:none;}
+  .study-q{font-weight:500; font-size:15px; margin-bottom:8px;}
+  .study-a{font-size:14px; color:var(--success); font-weight:500;}
+  .study-e{font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
+  .study-num{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); margin-bottom:4px;}
+  .domain-head{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--accent-deep); margin:24px 0 4px; padding-top:16px; border-top:2px solid var(--accent-deep);
+  }
+  .domain-head:first-child{margin-top:0; border-top:none; padding-top:0;}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">CompTIA Security+ SY0-701</div>
+    <h1>Practice Questions — 100 Q&amp;A</h1>
+    <div class="sub">Virunpon Kaewraparounghirun · Take the quiz or browse in study mode</div>
+  </header>
 
-<div class="container">
-    <header>
-        <div class="badge-cert">CompTIA Security+ SY0-701</div>
-        <h1>100 Practice Questions & Answers</h1>
-        <p class="subtitle">Interactive study guide & flashcard system designed for offline/online review, GitHub Pages hosting, and mobile self-testing.</p>
-        
-        <div class="stats-bar">
-            <div class="stat-item">Passing Score: <strong>750 / 900 (~83%)</strong></div>
-            <div class="stat-item">Answered: <strong id="answered-count">0</strong> / 100</div>
-            <div class="stat-item">Score: <strong id="score-val">0%</strong></div>
-        </div>
-    </header>
+  <div class="modebar">
+    <button class="modebtn active" data-mode="quiz">Quiz mode</button>
+    <button class="modebtn" data-mode="study">Study mode (read all)</button>
+  </div>
 
-    <div class="controls">
-        <select id="domain-filter">
-            <option value="all">All Domains (100 Questions)</option>
-            <option value="Domain 1">Domain 1: General Security Concepts (12%)</option>
-            <option value="Domain 2">Domain 2: Threats, Vulnerabilities & Mitigations (22%)</option>
-            <option value="Domain 3">Domain 3: Security Architecture (18%)</option>
-            <option value="Domain 4">Domain 4: Security Operations (28%)</option>
-            <option value="Domain 5">Domain 5: Program Management & Oversight (20%)</option>
-        </select>
-
-        <input type="text" id="search-input" class="search-box" placeholder="Search keywords (e.g. honeypot, XSS, firewall)...">
-
-        <button class="btn btn-toggle-all" id="btn-toggle-all">Show All Answers</button>
-        <button class="btn btn-reset" id="btn-reset">Reset Test</button>
-    </div>
-
-    <div id="questions-container"></div>
-
-    <footer>
-        <p>CompTIA Security+ (SY0-701) Self-Study Practice Collection</p>
-        <p style="margin-top:4px;">Single-file offline HTML — Ready to upload directly to GitHub / GitHub Pages.</p>
-    </footer>
+  <div id="quizView"></div>
+  <div id="studyView" style="display:none;"></div>
 </div>
 
 <script>
-const questions = [{"num": 1, "domain": "Domain 1: General Security Concepts", "q": "Which of the following ensures that a sender cannot deny sending a message?", "options": ["A) Encryption", "B) Hashing", "C) Digital Signature", "D) Symmetric Key Exchange"], "answer": "C) Digital Signature", "explanation": "Digital signatures ensure non-repudiation - proving who sent the data."}, {"num": 2, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which type of threat actor is MOST likely to have the greatest resources and patience for an extended attack?", "options": ["A) Insider", "B) Nation-State", "C) Script Kiddie", "D) Hacktivist"], "answer": "B) Nation-State", "explanation": "Nation-state actors have the highest resources, skills, and patience for prolonged attacks."}, {"num": 3, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What type of attack involves inserting malicious code into a legitimate web application to steal information from users?", "options": ["A) Phishing", "B) SQL Injection", "C) Cross-Site Scripting (XSS)", "D) DNS Spoofing"], "answer": "C) Cross-Site Scripting (XSS)", "explanation": "XSS injects malicious scripts into web apps to steal session cookies, data, etc."}, {"num": 4, "domain": "Domain 1: General Security Concepts", "q": "A company needs to prevent unauthorized devices from connecting to its internal network. What technology should be used?", "options": ["A) Firewall", "B) VPN", "C) NAC (Network Access Control)", "D) IDS"], "answer": "C) NAC (Network Access Control)", "explanation": "NAC checks device health and enforces policies before allowing network access."}, {"num": 5, "domain": "Domain 3: Security Architecture", "q": "Which backup type saves only the changes made since the last full backup?", "options": ["A) Incremental", "B) Differential", "C) Full", "D) Snapshot"], "answer": "A) Incremental", "explanation": "Incremental backup captures only changes since the last full (or last incremental) backup."}, {"num": 6, "domain": "Domain 3: Security Architecture", "q": "What control type is a biometric fingerprint scanner?", "options": ["A) Technical", "B) Administrative", "C) Physical", "D) Compensating"], "answer": "C) Physical", "explanation": "Biometric scanners are physical controls that authenticate users."}, {"num": 7, "domain": "Domain 3: Security Architecture", "q": "Which wireless security protocol is the most secure for corporate environments?", "options": ["A) WEP", "B) WPA", "C) WPA2-PSK", "D) WPA3-Enterprise"], "answer": "D) WPA3-Enterprise", "explanation": "WPA3-Enterprise is the most secure option for business wireless networks."}, {"num": 8, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which of the following would BEST help mitigate risks associated with phishing attacks?", "options": ["A) IDS", "B) Security Awareness Training", "C) Firewall Rules", "D) Password Complexity Requirements"], "answer": "B) Security Awareness Training", "explanation": "Training users helps them recognize phishing attempts and avoid falling victim."}, {"num": 9, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which risk response involves buying cyber insurance?", "options": ["A) Accept", "B) Mitigate", "C) Transfer", "D) Avoid"], "answer": "C) Transfer", "explanation": "Buying insurance transfers the financial risk to another party."}, {"num": 10, "domain": "Domain 4: Security Operations", "q": "Which concept is being applied when access to files is based on job roles such as HR, IT, or Accounting?", "options": ["A) MAC", "B) DAC", "C) RBAC", "D) ABAC"], "answer": "C) RBAC", "explanation": "Role-Based Access Control (RBAC) assigns permissions based on user job roles."}, {"num": 11, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which term describes an attack where an unauthorized device connects to a corporate wireless network?", "options": ["A) Rogue AP", "B) Evil Twin", "C) Bluejacking", "D) MAC Spoofing"], "answer": "B) Evil Twin", "explanation": "An evil twin is a rogue Wi-Fi access point set up to mimic a legitimate network."}, {"num": 12, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What type of malware disguises itself as a legitimate program but delivers a malicious payload?", "options": ["A) Worm", "B) Ransomware", "C) Trojan", "D) Rootkit"], "answer": "C) Trojan", "explanation": "A trojan appears legitimate but delivers malicious code once executed."}, {"num": 13, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which process helps ensure that only needed ports and services are running on a server?", "options": ["A) Network segmentation", "B) Baseline configuration", "C) Change management", "D) Hardening"], "answer": "D) Hardening", "explanation": "Hardening reduces attack surface by disabling unnecessary services."}, {"num": 14, "domain": "Domain 3: Security Architecture", "q": "A database administrator is setting access so that users only have permission to view certain data. Which principle is being applied?", "options": ["A) Separation of Duties", "B) Need-to-Know", "C) Non-repudiation", "D) Risk Transference"], "answer": "B) Need-to-Know", "explanation": "Need-to-know restricts data access to only necessary users."}, {"num": 15, "domain": "Domain 3: Security Architecture", "q": "Which option BEST describes a warm site in disaster recovery planning?", "options": ["A) Fully operational copy of the production environment", "B) Facility with basic hardware but not real-time data", "C) Empty building with power and Internet only", "D) Vendor-provided cloud backup solution"], "answer": "B) Facility with basic hardware but not real-time data", "explanation": "Warm sites have equipment ready but need configuration and data loading."}, {"num": 16, "domain": "Domain 4: Security Operations", "q": "Which technology would a company use to detect unauthorized changes to critical system files?", "options": ["A) DLP", "B) File Integrity Monitoring (FIM)", "C) SIEM", "D) HIDS"], "answer": "B) File Integrity Monitoring (FIM)", "explanation": "FIM detects unauthorized changes to files."}, {"num": 17, "domain": "Domain 4: Security Operations", "q": "A phishing attack led to a ransomware infection. Which two controls would have BEST prevented the incident? (Choose two.)", "options": ["A) Data Encryption", "B) Email Filtering", "C) Security Awareness Training", "D) RAID 5"], "answer": "B) Email Filtering and C) Security Awareness Training", "explanation": "Filtering blocks phishing emails; training teaches users to recognize them."}, {"num": 18, "domain": "Domain 3: Security Architecture", "q": "Which type of access control is enforced by system policies rather than user discretion?", "options": ["A) DAC", "B) RBAC", "C) ABAC", "D) MAC"], "answer": "D) MAC", "explanation": "Mandatory Access Control (MAC) strictly enforces security policies."}, {"num": 19, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What is the primary purpose of a honeypot?", "options": ["A) Encrypt sensitive data", "B) Divert attackers away from real systems", "C) Patch vulnerabilities", "D) Enforce firewall rules"], "answer": "B) Divert attackers away from real systems", "explanation": "Honeypots attract attackers to fake systems to study them."}, {"num": 20, "domain": "Domain 4: Security Operations", "q": "Which incident response phase involves learning lessons and updating the incident response plan after a security event?", "options": ["A) Detection", "B) Containment", "C) Recovery", "D) Lessons Learned"], "answer": "D) Lessons Learned", "explanation": "Post-incident analysis improves future responses."}, {"num": 21, "domain": "Domain 4: Security Operations", "q": "Which of the following BEST describes a risk mitigation strategy?", "options": ["A) Ignoring a low-probability event", "B) Purchasing cyber insurance", "C) Installing a firewall to block threats", "D) Documenting a risk acceptance form"], "answer": "C) Installing a firewall to block threats", "explanation": "Mitigation adds controls to reduce risk likelihood or impact."}, {"num": 22, "domain": "Domain 3: Security Architecture", "q": "An attacker is trying multiple passwords against many different user accounts. What is this called?", "options": ["A) Dictionary Attack", "B) Brute Force Attack", "C) Password Spraying", "D) Rainbow Table Attack"], "answer": "C) Password Spraying", "explanation": "Password spraying tries common passwords across many accounts to avoid lockout."}, {"num": 23, "domain": "Domain 4: Security Operations", "q": "What is the purpose of a disaster recovery plan (DRP)?", "options": ["A) Prevent data breaches", "B) Maintain operations during an attack", "C) Restore critical business systems after disruption", "D) Identify vulnerabilities before attacks occur"], "answer": "C) Restore critical business systems after disruption", "explanation": "DRP focuses on system recovery after disaster events."}, {"num": 24, "domain": "Domain 1: General Security Concepts", "q": "Which concept ensures that sensitive data is only accessible to authorized individuals?", "options": ["A) Integrity", "B) Confidentiality", "C) Availability", "D) Authentication"], "answer": "B) Confidentiality", "explanation": "Confidentiality ensures sensitive data isn't disclosed to unauthorized users."}, {"num": 25, "domain": "Domain 4: Security Operations", "q": "Which of the following BEST describes a vulnerability scanner?", "options": ["A) Blocks malicious traffic at the network perimeter", "B) Actively exploits vulnerabilities", "C) Passively identifies potential weaknesses", "D) Encrypts sensitive communications"], "answer": "C) Passively identifies potential weaknesses", "explanation": "Vulnerability scanners find weaknesses but don't exploit them."}, {"num": 26, "domain": "Domain 3: Security Architecture", "q": "Which of the following technologies uses security groups and microsegmentation to enhance cloud security?", "options": ["A) VPNs", "B) Infrastructure as Code", "C) Cloud-native firewalls", "D) Software-Defined Networking (SDN)"], "answer": "D) Software-Defined Networking (SDN)", "explanation": "SDN uses segmentation and programmable security in cloud environments."}, {"num": 27, "domain": "Domain 3: Security Architecture", "q": "A system administrator wants to monitor failed login attempts centrally. Which system should be deployed?", "options": ["A) SIEM", "B) NAC", "C) DLP", "D) SOAR"], "answer": "A) SIEM", "explanation": "SIEM collects and analyzes logs, including login failures."}, {"num": 28, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which attack occurs when a malicious actor manipulates a DNS server to redirect traffic to fraudulent websites?", "options": ["A) DNS Poisoning", "B) Domain Hijacking", "C) IP Spoofing", "D) ARP Poisoning"], "answer": "A) DNS Poisoning", "explanation": "DNS poisoning manipulates DNS to redirect users to malicious sites."}, {"num": 29, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "A company requires users to authenticate once and then have access to multiple systems without re-entering credentials. Which solution BEST meets this requirement?", "options": ["A) Federation", "B) LDAP", "C) Multifactor Authentication", "D) VPN"], "answer": "A) Federation", "explanation": "Federation allows single authentication across multiple domains or systems."}, {"num": 30, "domain": "Domain 4: Security Operations", "q": "Which backup strategy would provide the QUICKEST recovery time in case of a server failure?", "options": ["A) Full Backup", "B) Differential Backup", "C) Incremental Backup", "D) Snapshot Backup"], "answer": "D) Snapshot Backup", "explanation": "Snapshots allow rapid rollback to a known good system state."}, {"num": 31, "domain": "Domain 1: General Security Concepts", "q": "Which principle ensures that users are granted only the access necessary to perform their job functions?", "options": ["A) Separation of Duties", "B) Need-to-Know", "C) Least Privilege", "D) Role-Based Access Control"], "answer": "C) Least Privilege", "explanation": "Least privilege gives users only necessary access rights to do their jobs."}, {"num": 32, "domain": "Domain 3: Security Architecture", "q": "An attacker captures data from a public Wi-Fi network without connecting to it. Which attack is being performed?", "options": ["A) Evil Twin", "B) On-Path Attack (MITM)", "C) Passive Eavesdropping", "D) Session Hijacking"], "answer": "C) Passive Eavesdropping", "explanation": "Passive eavesdropping listens to network traffic without active interception."}, {"num": 33, "domain": "Domain 4: Security Operations", "q": "What is the PRIMARY goal of a business impact analysis (BIA)?", "options": ["A) Identify and prioritize critical business functions", "B) Analyze threats against network security", "C) Determine security control effectiveness", "D) Perform a penetration test"], "answer": "A) Identify and prioritize critical business functions", "explanation": "BIA identifies essential processes and their recovery priorities."}, {"num": 34, "domain": "Domain 4: Security Operations", "q": "What type of backup method would you use if you want to store only the changes made since the last full backup AND you want fast recovery?", "options": ["A) Incremental", "B) Full", "C) Differential", "D) Snapshot"], "answer": "C) Differential", "explanation": "Differential backups capture changes since last full backup and restore faster than incremental."}, {"num": 35, "domain": "Domain 3: Security Architecture", "q": "Which of the following technologies BEST protects against on-path (Man-in-the-Middle) attacks?", "options": ["A) VLAN", "B) IPS", "C) VPN", "D) RAID"], "answer": "C) VPN", "explanation": "VPNs encrypt traffic, preventing interception and tampering in on-path attacks."}, {"num": 36, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "During which incident response phase would you isolate a compromised server?", "options": ["A) Recovery", "B) Containment", "C) Lessons Learned", "D) Identification"], "answer": "B) Containment", "explanation": "Containment limits the spread of the incident, like isolating a server."}, {"num": 37, "domain": "Domain 4: Security Operations", "q": "What security principle is enforced when employees are required to use two different passwords for administrative and non-administrative accounts?", "options": ["A) Separation of Duties", "B) Least Privilege", "C) Defense in Depth", "D) Dual Control"], "answer": "A) Separation of Duties", "explanation": "Separating credentials for admin and user accounts supports separation of duties."}, {"num": 38, "domain": "Domain 4: Security Operations", "q": "Which cloud model allows the customer the MOST control over the operating system and applications?", "options": ["A) SaaS", "B) PaaS", "C) IaaS", "D) FaaS"], "answer": "C) IaaS", "explanation": "In Infrastructure as a Service (IaaS), the customer manages OS, apps, and configurations."}, {"num": 39, "domain": "Domain 4: Security Operations", "q": "What is a PRIMARY security concern with Infrastructure as Code (IaC)?", "options": ["A) Outdated server hardware", "B) Rapid spread of misconfigurations", "C) Vendor lock-in", "D) Poor network performance"], "answer": "B) Rapid spread of misconfigurations", "explanation": "IaC errors can quickly replicate insecure settings across environments."}, {"num": 40, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "An attacker sends unsolicited Bluetooth messages to nearby devices. What attack is this?", "options": ["A) Bluesnarfing", "B) Bluebugging", "C) Bluejacking", "D) Bluespoofing"], "answer": "C) Bluejacking", "explanation": "Bluejacking involves sending unsolicited Bluetooth messages to devices."}, {"num": 41, "domain": "Domain 4: Security Operations", "q": "Which of the following BEST describes a cold site?", "options": ["A) Operational data center ready for immediate use", "B) Empty facility with basic infrastructure like power and HVAC", "C) Fully equipped center with real-time data replication", "D) Offsite cloud backup provider"], "answer": "B) Empty facility with basic infrastructure like power and HVAC", "explanation": "A cold site is ready with essentials but needs equipment and data to become operational."}, {"num": 42, "domain": "Domain 3: Security Architecture", "q": "Which access control method enforces strict policies based on security labels such as 'Confidential' or 'Top Secret'?", "options": ["A) DAC", "B) RBAC", "C) MAC", "D) ABAC"], "answer": "C) MAC", "explanation": "Mandatory Access Control uses labels like 'Top Secret' to strictly control access."}, {"num": 43, "domain": "Domain 4: Security Operations", "q": "An employee plugs a personal USB drive into a company workstation without approval. What risk does this primarily represent?", "options": ["A) Insider Threat", "B) Phishing Attack", "C) Supply Chain Attack", "D) Business Email Compromise"], "answer": "A) Insider Threat", "explanation": "Unauthorized devices plugged into company systems pose insider risks."}, {"num": 44, "domain": "Domain 1: General Security Concepts", "q": "Which protocol secures email communication by digitally signing and encrypting messages?", "options": ["A) TLS", "B) S/MIME", "C) SSH", "D) SSL"], "answer": "B) S/MIME", "explanation": "S/MIME secures email with digital signatures and encryption."}, {"num": 45, "domain": "Domain 1: General Security Concepts", "q": "Which type of control is implementing a security awareness training program?", "options": ["A) Physical", "B) Technical", "C) Preventive", "D) Administrative"], "answer": "D) Administrative", "explanation": "Security training programs are administrative controls (policy/procedure related)."}, {"num": 46, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What is the MOST appropriate tool to use when wanting to aggregate, correlate, and analyze logs from multiple systems?", "options": ["A) VPN", "B) Firewall", "C) SIEM", "D) NAC"], "answer": "C) SIEM", "explanation": "A SIEM collects and analyzes logs from across the enterprise."}, {"num": 47, "domain": "Domain 3: Security Architecture", "q": "Which of the following would MOST help prevent unauthorized physical access to a data center?", "options": ["A) IDS", "B) Biometric Access Controls", "C) VPN", "D) Anti-Malware"], "answer": "B) Biometric Access Controls", "explanation": "Biometrics (like fingerprints) are effective physical security measures."}, {"num": 48, "domain": "Domain 3: Security Architecture", "q": "What security concept involves separating services and functions into isolated containers to minimize the attack surface?", "options": ["A) Microsegmentation", "B) Defense in Depth", "C) Least Privilege", "D) Data Sovereignty"], "answer": "A) Microsegmentation", "explanation": "Microsegmentation isolates workloads to minimize lateral movement risk."}, {"num": 49, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "An attacker successfully tricks a user into giving up login credentials via a fake login page. What attack technique was used?", "options": ["A) Spear Phishing", "B) Vishing", "C) Smishing", "D) Pharming"], "answer": "A) Spear Phishing", "explanation": "Spear phishing targets individuals with highly customized fake login pages."}, {"num": 50, "domain": "Domain 4: Security Operations", "q": "Which phase of the incident response process involves finding and removing malware from infected systems?", "options": ["A) Preparation", "B) Containment", "C) Eradication", "D) Lessons Learned"], "answer": "C) Eradication", "explanation": "Eradication is when you remove malware or vulnerabilities after containment."}, {"num": 51, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which security tool uses signatures and anomaly detection to identify malicious network traffic?", "options": ["A) Firewall", "B) SIEM", "C) IDS", "D) DLP"], "answer": "C) IDS", "explanation": "An IDS detects threats by matching signatures or identifying anomalies."}, {"num": 52, "domain": "Domain 4: Security Operations", "q": "A company wants to ensure that employees can recover their files after a ransomware attack without paying the ransom. Which control BEST achieves this?", "options": ["A) IDS", "B) Regular Offline Backups", "C) VPN Access", "D) Email Filtering"], "answer": "B) Regular Offline Backups", "explanation": "Offline backups protect against ransomware by providing safe recovery data."}, {"num": 53, "domain": "Domain 1: General Security Concepts", "q": "Which of the following is MOST critical to maintain when preserving digital evidence?", "options": ["A) Full Disk Encryption", "B) Legal Hold", "C) Chain of Custody", "D) Incident Triage"], "answer": "C) Chain of Custody", "explanation": "Chain of custody ensures evidence integrity for legal use."}, {"num": 54, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "A company configures a cloud storage bucket and mistakenly leaves it open to the public. What type of vulnerability is this?", "options": ["A) Zero-Day", "B) Misconfiguration", "C) Insider Threat", "D) Malware Infection"], "answer": "B) Misconfiguration", "explanation": "Leaving a cloud bucket public is a classic misconfiguration vulnerability."}, {"num": 55, "domain": "Domain 3: Security Architecture", "q": "Which layer of the OSI model does a firewall operate primarily at?", "options": ["A) Application", "B) Transport", "C) Network", "D) Data Link"], "answer": "C) Network", "explanation": "Firewalls operate mainly at Layer 3 (Network layer) - managing IP addresses and traffic."}, {"num": 56, "domain": "Domain 5: Security Program Management and Oversight", "q": "What security concept is enforced when two employees are required to approve a wire transfer above a certain dollar amount?", "options": ["A) Dual Control", "B) Least Privilege", "C) Discretionary Access Control", "D) Federation"], "answer": "A) Dual Control", "explanation": "Dual control requires two people to authorize a sensitive action."}, {"num": 57, "domain": "Domain 4: Security Operations", "q": "Which cryptographic concept is used to ensure message integrity?", "options": ["A) Symmetric Encryption", "B) Asymmetric Encryption", "C) Hashing", "D) Key Exchange"], "answer": "C) Hashing", "explanation": "Hashing ensures data integrity by generating a fixed fingerprint of data."}, {"num": 58, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What is the purpose of tokenization in data security?", "options": ["A) Encrypt sensitive data", "B) Replace sensitive data with non-sensitive placeholders", "C) Hash sensitive data", "D) Create a secure communication channel"], "answer": "B) Replace sensitive data with non-sensitive placeholders", "explanation": "Tokenization replaces real data with fake tokens to protect sensitive information."}, {"num": 59, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which type of backup provides the FASTEST full system recovery after a catastrophic failure?", "options": ["A) Incremental", "B) Full Backup", "C) Differential", "D) Cloud Backup"], "answer": "B) Full Backup", "explanation": "Full backups allow the quickest recovery without relying on incremental data restoration."}, {"num": 60, "domain": "Domain 4: Security Operations", "q": "A team uses a sandbox environment to open suspicious files. What type of control is this?", "options": ["A) Preventive", "B) Detective", "C) Corrective", "D) Compensating"], "answer": "A) Preventive", "explanation": "Sandboxes are preventive, isolating suspicious files before damage can occur."}, {"num": 61, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which of the following is a PRIMARY characteristic of a rootkit?", "options": ["A) Encrypts files and demands ransom", "B) Hides its existence by manipulating the OS", "C) Replicates itself across the network", "D) Sends unsolicited messages via Bluetooth"], "answer": "B) Hides its existence by manipulating the OS", "explanation": "Rootkits hide their presence by modifying OS functions to avoid detection."}, {"num": 62, "domain": "Domain 5: Security Program Management and Oversight", "q": "An organization wants to minimize data loss during a disaster. Which metric defines the maximum amount of data loss acceptable?", "options": ["A) RTO", "B) MTD", "C) RPO", "D) ALE"], "answer": "C) RPO", "explanation": "Recovery Point Objective (RPO) defines the maximum acceptable data loss in terms of time."}, {"num": 63, "domain": "Domain 4: Security Operations", "q": "Which wireless security protocol is considered obsolete and should NOT be used?", "options": ["A) WPA2", "B) WPA", "C) WPA3", "D) WEP"], "answer": "D) WEP", "explanation": "WEP is outdated and insecure easily cracked in minutes."}, {"num": 64, "domain": "Domain 4: Security Operations", "q": "A system administrator is deploying security patches to all systems automatically after testing. This is an example of:", "options": ["A) Change Management", "B) Patch Management", "C) Hardening", "D) Incident Response"], "answer": "B) Patch Management", "explanation": "Patch management involves scheduling and deploying updates systematically."}, {"num": 65, "domain": "Domain 5: Security Program Management and Oversight", "q": "What type of malware restricts access to a system until payment is made?", "options": ["A) Trojan", "B) Worm", "C) Spyware", "D) Ransomware"], "answer": "D) Ransomware", "explanation": "Ransomware encrypts systems/files and demands payment for access."}, {"num": 66, "domain": "Domain 3: Security Architecture", "q": "Which term describes isolating different departments in a network to improve security?", "options": ["A) Subnetting", "B) Virtualization", "C) Network Segmentation", "D) Packet Filtering"], "answer": "C) Network Segmentation", "explanation": "Segmentation isolates different parts of the network for better control and security."}, {"num": 67, "domain": "Domain 5: Security Program Management and Oversight", "q": "What concept does the principle of 'never trust, always verify' relate to?", "options": ["A) VPN", "B) Zero Trust", "C) Single Sign-On", "D) Role-Based Access Control"], "answer": "B) Zero Trust", "explanation": "Zero Trust always requires verification, regardless of network location."}, {"num": 68, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which tool is specifically designed to discover vulnerabilities in a system but NOT exploit them?", "options": ["A) Penetration Test", "B) Exploit Framework", "C) Vulnerability Scanner", "D) SIEM"], "answer": "C) Vulnerability Scanner", "explanation": "Vulnerability scanners detect weaknesses without active exploitation."}, {"num": 69, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "An employee receives a fake call pretending to be IT support asking for a password. What attack is this?", "options": ["A) Phishing", "B) Vishing", "C) Smishing", "D) Spear Phishing"], "answer": "B) Vishing", "explanation": "Vishing is phishing conducted over the telephone (voice phishing)."}, {"num": 70, "domain": "Domain 4: Security Operations", "q": "A user logs into an internal website using a badge and PIN. What authentication factors are being used?", "options": ["A) Something you know and something you are", "B) Something you know and something you have", "C) Something you have and something you are", "D) Two instances of something you know"], "answer": "B) Something you know and something you have", "explanation": "PIN = something you know; Badge = something you have."}, {"num": 71, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which technology allows secure remote access to a corporate network by encrypting all traffic?", "options": ["A) VLAN", "B) IDS", "C) VPN", "D) Proxy Server"], "answer": "C) VPN", "explanation": "A VPN encrypts data between remote users and corporate networks."}, {"num": 72, "domain": "Domain 5: Security Program Management and Oversight", "q": "An employee leaves a confidential document on a shared printer. What kind of risk is this?", "options": ["A) Insider Threat", "B) Physical Security Risk", "C) Supply Chain Risk", "D) Malware Infection"], "answer": "B) Physical Security Risk", "explanation": "Leaving sensitive documents in shared spaces risks unauthorized physical access."}, {"num": 73, "domain": "Domain 4: Security Operations", "q": "Which of the following would MOST effectively prevent malware from executing on endpoints?", "options": ["A) Application Allowlisting", "B) IDS Deployment", "C) SSL/TLS Encryption", "D) Role-Based Access Control"], "answer": "A) Application Allowlisting", "explanation": "Only approved apps can run, blocking unknown malware."}, {"num": 74, "domain": "Domain 5: Security Program Management and Oversight", "q": "A company requires that users verify their identity using a username, password, and fingerprint scan. This is an example of:", "options": ["A) Multi-Factor Authentication", "B) Federation", "C) SSO", "D) Kerberos Authentication"], "answer": "A) Multi-Factor Authentication", "explanation": "Using two or more different authentication factor types (knowledge + inherence)."}, {"num": 75, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which security principle ensures that critical functions are divided among multiple people to prevent fraud?", "options": ["A) Least Privilege", "B) Separation of Duties", "C) Job Rotation", "D) Dual Control"], "answer": "B) Separation of Duties", "explanation": "No one person controls all parts of a critical process, preventing fraud."}, {"num": 76, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "What technique is used by attackers to overload a server with requests, causing service disruption?", "options": ["A) SQL Injection", "B) DNS Poisoning", "C) DDoS Attack", "D) ARP Spoofing"], "answer": "C) DDoS Attack", "explanation": "Distributed Denial of Service floods a server with excessive traffic."}, {"num": 77, "domain": "Domain 3: Security Architecture", "q": "Which of the following devices inspects and filters packets based on application-level data?", "options": ["A) Traditional Firewall", "B) Proxy Server", "C) Next-Generation Firewall (NGFW)", "D) Router"], "answer": "C) Next-Generation Firewall (NGFW)", "explanation": "NGFWs inspect packets deeply up to Layer 7 (Application-level data)."}, {"num": 78, "domain": "Domain 1: General Security Concepts", "q": "Which method ensures that a user cannot deny performing an action, such as sending an email?", "options": ["A) Non-Repudiation", "B) Availability", "C) Encryption", "D) Role-Based Access Control"], "answer": "A) Non-Repudiation", "explanation": "Non-repudiation ensures undeniable proof of actions like sending emails."}, {"num": 79, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "An attacker exploits a race condition in a web application. What is this an example of?", "options": ["A) Improper Input Handling", "B) Application Logic Flaw", "C) Secure Coding Practice", "D) Race Attack Vulnerability"], "answer": "D) Race Attack Vulnerability", "explanation": "Race conditions exploit timing/synchronization issues between processes."}, {"num": 80, "domain": "Domain 3: Security Architecture", "q": "Which of the following is a benefit of implementing Infrastructure as Code (IaC) securely?", "options": ["A) Manual configuration of servers", "B) Consistent and repeatable deployments", "C) Physical separation of networks", "D) Encrypted communication tunnels"], "answer": "B) Consistent and repeatable deployments", "explanation": "IaC enables secure, automated, consistent infrastructure setup without drift."}, {"num": 81, "domain": "Domain 4: Security Operations", "q": "Which of the following BEST describes the primary benefit of implementing a SIEM system?", "options": ["A) Blocking unauthorized access attempts", "B) Preventing malware infections", "C) Aggregating and analyzing security logs centrally", "D) Encrypting sensitive data at rest"], "answer": "C) Aggregating and analyzing security logs centrally", "explanation": "SIEM systems collect and correlate logs from multiple sources for centralized analysis."}, {"num": 82, "domain": "Domain 4: Security Operations", "q": "What is the MAIN purpose of a DLP (Data Loss Prevention) system?", "options": ["A) Detect malware signatures", "B) Monitor unauthorized data transfers", "C) Block phishing emails", "D) Scan networks for vulnerabilities"], "answer": "B) Monitor unauthorized data transfers", "explanation": "DLP systems prevent sensitive data from leaving the network unauthorized."}, {"num": 83, "domain": "Domain 5: Security Program Management and Oversight", "q": "An attacker tricks a user into resetting their password by spoofing a legitimate password reset page. What kind of attack is this?", "options": ["A) Phishing", "B) SQL Injection", "C) Session Hijacking", "D) Privilege Escalation"], "answer": "A) Phishing", "explanation": "Spoofed password reset pages are classic phishing attacks."}, {"num": 84, "domain": "Domain 4: Security Operations", "q": "Which backup method copies only the files that have changed since the last backup, no matter what type it was?", "options": ["A) Full", "B) Incremental", "C) Differential", "D) Snapshot"], "answer": "B) Incremental", "explanation": "Incremental backups save changes since the last backup (full or incremental)."}, {"num": 85, "domain": "Domain 5: Security Program Management and Oversight", "q": "What does the principle of Defense in Depth emphasize?", "options": ["A) Using multiple layers of security controls", "B) Deploying only firewalls at the network perimeter", "C) Using two-factor authentication for all logins", "D) Relying primarily on SIEM alerts"], "answer": "A) Using multiple layers of security controls", "explanation": "Defense in Depth means no single point of failure by layering multiple controls."}, {"num": 86, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which of the following is an example of an administrative control?", "options": ["A) Fire extinguisher in server room", "B) Firewall rules", "C) Security awareness policy", "D) Encryption of data at rest"], "answer": "C) Security awareness policy", "explanation": "Administrative controls include governance policies, training, and standard procedures."}, {"num": 87, "domain": "Domain 4: Security Operations", "q": "A SOC analyst notices large outbound traffic to an unknown IP. What is the BEST immediate action?", "options": ["A) Shut down all network switches", "B) Disconnect affected systems", "C) Reboot affected systems", "D) Call the ISP"], "answer": "B) Disconnect affected systems", "explanation": "Disconnect immediately to prevent further data exfiltration while preserving memory state."}, {"num": 88, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which term describes unauthorized commands sent from a user's browser to a trusted website?", "options": ["A) Cross-Site Scripting (XSS)", "B) SQL Injection", "C) Command Injection", "D) Cross-Site Request Forgery (CSRF)"], "answer": "D) Cross-Site Request Forgery (CSRF)", "explanation": "CSRF tricks an authenticated user's browser into executing unwanted actions."}, {"num": 89, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which of the following technologies enables a single identity to access multiple applications across different domains?", "options": ["A) Multifactor Authentication", "B) Federation", "C) VPN", "D) Zero Trust"], "answer": "B) Federation", "explanation": "Federation allows single login across multiple organizations/systems."}, {"num": 90, "domain": "Domain 4: Security Operations", "q": "What is the FIRST action to take when you detect an active ransomware infection?", "options": ["A) Pay the ransom", "B) Disconnect infected systems from the network", "C) Run antivirus scan", "D) Contact cloud backup provider"], "answer": "B) Disconnect infected systems from the network", "explanation": "Isolate first to stop the spread of ransomware to network shares and adjacent hosts."}, {"num": 91, "domain": "Domain 1: General Security Concepts", "q": "Which of the following terms describes preventing unauthorized access by forcing a user to authenticate again after a period of inactivity?", "options": ["A) Session Lock", "B) Password Complexity", "C) Single Sign-On", "D) Federation"], "answer": "A) Session Lock", "explanation": "Session locks require reauthentication after inactivity to prevent unauthorized access."}, {"num": 92, "domain": "Domain 5: Security Program Management and Oversight", "q": "What type of test involves assessing the physical, administrative, and technical safeguards without exploiting vulnerabilities?", "options": ["A) Vulnerability Scan", "B) Penetration Test", "C) Risk Assessment", "D) Business Impact Analysis"], "answer": "C) Risk Assessment", "explanation": "Risk assessments evaluate safeguards and exposure without actively exploiting vulnerabilities."}, {"num": 93, "domain": "Domain 1: General Security Concepts", "q": "Which component is critical for ensuring confidentiality when sending sensitive data across the Internet?", "options": ["A) Hashing", "B) Encryption", "C) Load Balancing", "D) IDS"], "answer": "B) Encryption", "explanation": "Encryption protects data confidentiality during transmission."}, {"num": 94, "domain": "Domain 5: Security Program Management and Oversight", "q": "What is the purpose of implementing redundant power supplies in servers?", "options": ["A) Improve encryption performance", "B) Increase network bandwidth", "C) Enhance system availability", "D) Provide faster processing"], "answer": "C) Enhance system availability", "explanation": "Redundant power supplies prevent downtime and enhance system availability."}, {"num": 95, "domain": "Domain 5: Security Program Management and Oversight", "q": "Which of the following MOST accurately defines tokenization?", "options": ["A) Encrypting all data in a database", "B) Replacing sensitive data elements with a unique identifier", "C) Hashing user passwords before storage", "D) Obfuscating source code to protect intellectual property"], "answer": "B) Replacing sensitive data elements with a unique identifier", "explanation": "Tokenization swaps real data for non-sensitive meaningless tokens."}, {"num": 96, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "An attacker uses a vulnerability in a software program that has not yet been patched. What kind of attack is this?", "options": ["A) Zero-Day", "B) Man-in-the-Middle", "C) Cross-Site Scripting", "D) Phishing"], "answer": "A) Zero-Day", "explanation": "Zero-day attacks exploit unknown or unpatched vulnerabilities."}, {"num": 97, "domain": "Domain 5: Security Program Management and Oversight", "q": "What is the BEST method to mitigate the impact of social engineering attacks?", "options": ["A) Install firewalls", "B) Security Awareness Training", "C) Regular Penetration Testing", "D) Conduct Full Backups"], "answer": "B) Security Awareness Training", "explanation": "Training users helps them recognize and avoid social engineering."}, {"num": 98, "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations", "q": "Which type of malware is specifically designed to provide persistent, hidden access to a compromised system?", "options": ["A) Ransomware", "B) Trojan", "C) Rootkit", "D) Worm"], "answer": "C) Rootkit", "explanation": "Rootkits maintain hidden, persistent access by deeply integrating with operating system core functions."}, {"num": 99, "domain": "Domain 5: Security Program Management and Oversight", "q": "A backup strategy uses the Grandfather-Father-Son method. What is this primarily designed to achieve?", "options": ["A) Ensure zero data loss", "B) Maintain multiple historical versions of backups", "C) Accelerate disaster recovery", "D) Improve real-time replication"], "answer": "B) Maintain multiple historical versions of backups", "explanation": "Grandfather-Father-Son rotation ensures backup version history over daily, weekly, and monthly cycles."}, {"num": 100, "domain": "Domain 5: Security Program Management and Oversight", "q": "What security tool intercepts and controls traffic between a user and the Internet to enforce company policies?", "options": ["A) Firewall", "B) VPN", "C) Proxy Server", "D) Load Balancer"], "answer": "C) Proxy Server", "explanation": "Proxies filter, control, and log outbound Internet traffic to enforce policies and block malicious destinations."}];
-let userAnswers = {};
-let showAll = false;
+const QUESTIONS = [{"d": "General Security Concepts", "q": "Which of the following ensures that a sender cannot deny sending a message?", "o": ["Encryption", "Hashing", "Digital Signature", "Symmetric Key Exchange"], "c": 2, "e": "ลายเซ็นดิจิทัลช่วยยืนยัน non-repudiation คือพิสูจน์ได้ว่าใครเป็นคนส่งข้อมูล"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which type of threat actor is MOST likely to have the greatest resources and patience for an extended attack?", "o": ["Insider", "Nation-State", "Script Kiddie", "Hacktivist"], "c": 1, "e": "Nation-State มีทรัพยากร ทักษะ และความอดทนสูงสุดสำหรับการโจมตีระยะยาว"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What type of attack involves inserting malicious code into a legitimate web application to steal information from users?", "o": ["Phishing", "SQL Injection", "Cross-Site Scripting (XSS)", "DNS Spoofing"], "c": 2, "e": "XSS คือการฝังสคริปต์อันตรายในเว็บแอปเพื่อขโมย session cookie หรือข้อมูลผู้ใช้"}, {"d": "General Security Concepts", "q": "A company needs to prevent unauthorized devices from connecting to its internal network. What technology should be used?", "o": ["Firewall", "VPN", "NAC (Network Access Control)", "IDS"], "c": 2, "e": "NAC ตรวจสอบสถานะอุปกรณ์และบังคับใช้นโยบายก่อนอนุญาตให้เข้าเครือข่าย"}, {"d": "Security Architecture", "q": "Which backup type saves only the changes made since the last full backup?", "o": ["Incremental", "Differential", "Full", "Snapshot"], "c": 0, "e": "Incremental backup เก็บเฉพาะส่วนที่เปลี่ยนแปลงตั้งแต่ full backup ครั้งล่าสุด"}, {"d": "Security Architecture", "q": "What control type is a biometric fingerprint scanner?", "o": ["Technical", "Administrative", "Physical", "Compensating"], "c": 2, "e": "เครื่องสแกนลายนิ้วมือแบบ biometric เป็น physical control ที่ใช้ยืนยันตัวตนผู้ใช้"}, {"d": "Security Architecture", "q": "Which wireless security protocol is the most secure for corporate environments?", "o": ["WEP", "WPA", "WPA2-PSK", "WPA3-Enterprise"], "c": 3, "e": "WPA3-Enterprise เป็นตัวเลือกที่ปลอดภัยที่สุดสำหรับเครือข่ายไร้สายองค์กร"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which of the following would BEST help mitigate risks associated with phishing attacks?", "o": ["IDS", "Security Awareness Training", "Firewall Rules", "Password Complexity Requirements"], "c": 1, "e": "การอบรมสร้างความตระหนักช่วยให้ผู้ใช้จำแนกอีเมลฟิชชิงและไม่ตกเป็นเหยื่อ"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which risk response involves buying cyber insurance?", "o": ["Accept", "Mitigate", "Transfer", "Avoid"], "c": 2, "e": "การซื้อประกันภัยไซเบอร์คือการโอนความเสี่ยงทางการเงินไปให้บุคคลอื่น"}, {"d": "Security Operations", "q": "Which concept is being applied when access to files is based on job roles such as HR, IT, or Accounting?", "o": ["MAC", "DAC", "RBAC", "ABAC"], "c": 2, "e": "RBAC กำหนดสิทธิ์การเข้าถึงตามบทบาทหน้าที่ของผู้ใช้"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which term describes an attack where an unauthorized device connects to a corporate wireless network?", "o": ["Rogue AP", "Evil Twin", "Bluejacking", "MAC Spoofing"], "c": 1, "e": "Evil Twin คือจุดเชื่อมต่อ Wi-Fi ปลอมที่สร้างขึ้นมาเลียนแบบเครือข่ายจริง"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What type of malware disguises itself as a legitimate program but delivers a malicious payload?", "o": ["Worm", "Ransomware", "Trojan", "Rootkit"], "c": 2, "e": "Trojan ดูเหมือนโปรแกรมปกติแต่แฝงโค้ดอันตรายไว้เมื่อถูกเรียกใช้งาน"}, {"d": "Security Architecture", "q": "Which process helps ensure that only needed ports and services are running on a server?", "o": ["Network segmentation", "Baseline configuration", "Change management", "Hardening"], "c": 3, "e": "Hardening ช่วยลดพื้นผิวการโจมตีด้วยการปิดบริการที่ไม่จำเป็น"}, {"d": "Security Architecture", "q": "A database administrator is setting access so that users only have permission to view certain data. Which principle is being applied?", "o": ["Separation of Duties", "Need-to-Know", "Non-repudiation", "Risk Transference"], "c": 1, "e": "Need-to-know จำกัดการเข้าถึงข้อมูลเฉพาะผู้ที่จำเป็นต้องใช้เท่านั้น"}, {"d": "Security Architecture", "q": "Which option BEST describes a warm site in disaster recovery planning?", "o": ["Fully operational copy of the production environment", "Facility with basic hardware but not real-time data", "Empty building with power and Internet only", "Vendor-provided cloud backup solution"], "c": 1, "e": "Warm site มีอุปกรณ์พร้อมใช้ แต่ยังต้องตั้งค่าและโหลดข้อมูลก่อนใช้งานจริง"}, {"d": "Security Operations", "q": "Which technology would a company use to detect unauthorized changes to critical system files?", "o": ["DLP", "File Integrity Monitoring (FIM)", "SIEM", "HIDS"], "c": 1, "e": "FIM ใช้ตรวจจับการเปลี่ยนแปลงไฟล์ที่ไม่ได้รับอนุญาต"}, {"d": "Security Operations", "q": "A phishing attack led to a ransomware infection. Which control would have BEST helped prevent the incident?", "o": ["Data Encryption", "Email Filtering", "RAID 5", "Full Disk Encryption"], "c": 1, "e": "การกรองอีเมล (Email Filtering) ช่วยบล็อกอีเมลฟิชชิงก่อนถึงผู้ใช้ (ในเอกสารต้นฉบับข้อนี้มีคำตอบถูก 2 ข้อ คือ Email Filtering และ Security Awareness Training)"}, {"d": "Security Architecture", "q": "Which type of access control is enforced by system policies rather than user discretion?", "o": ["DAC", "RBAC", "ABAC", "MAC"], "c": 3, "e": "MAC (Mandatory Access Control) บังคับใช้นโยบายความปลอดภัยอย่างเข้มงวด"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What is the primary purpose of a honeypot?", "o": ["Encrypt sensitive data", "Divert attackers away from real systems", "Patch vulnerabilities", "Enforce firewall rules"], "c": 1, "e": "Honeypot ใช้ล่อผู้โจมตีให้เข้าไปในระบบปลอมเพื่อศึกษาพฤติกรรม"}, {"d": "Security Operations", "q": "Which incident response phase involves learning lessons and updating the incident response plan after a security event?", "o": ["Detection", "Containment", "Recovery", "Lessons Learned"], "c": 3, "e": "การวิเคราะห์หลังเหตุการณ์ (Lessons Learned) ช่วยปรับปรุงการตอบสนองในครั้งต่อไป"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which of the following BEST describes a risk mitigation strategy?", "o": ["Ignoring a low-probability event", "Purchasing cyber insurance", "Installing a firewall to block threats", "Documenting a risk acceptance form"], "c": 2, "e": "Mitigation คือการเพิ่มมาตรการควบคุมเพื่อลดโอกาสหรือผลกระทบของความเสี่ยง"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An attacker is trying multiple passwords against many different user accounts. What is this called?", "o": ["Dictionary Attack", "Brute Force Attack", "Password Spraying", "Rainbow Table Attack"], "c": 2, "e": "Password Spraying คือการลองรหัสผ่านที่ใช้กันทั่วไปกับหลายบัญชี เพื่อหลีกเลี่ยงการถูกล็อกบัญชี"}, {"d": "Security Architecture", "q": "What is the purpose of a disaster recovery plan (DRP)?", "o": ["Prevent data breaches", "Maintain operations during an attack", "Restore critical business systems after disruption", "Identify vulnerabilities before attacks occur"], "c": 2, "e": "DRP เน้นการกู้คืนระบบหลังเกิดภัยพิบัติ"}, {"d": "General Security Concepts", "q": "Which concept ensures that sensitive data is only accessible to authorized individuals?", "o": ["Integrity", "Confidentiality", "Availability", "Authentication"], "c": 1, "e": "Confidentiality คือการรับประกันว่าข้อมูลสำคัญจะไม่ถูกเปิดเผยแก่ผู้ที่ไม่ได้รับอนุญาต"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which of the following BEST describes a vulnerability scanner?", "o": ["Blocks malicious traffic at the network perimeter", "Actively exploits vulnerabilities", "Passively identifies potential weaknesses", "Encrypts sensitive communications"], "c": 2, "e": "เครื่องสแกนช่องโหว่ (Vulnerability Scanner) ค้นหาจุดอ่อนแต่ไม่โจมตีจริง"}, {"d": "Security Architecture", "q": "Which of the following technologies uses security groups and microsegmentation to enhance cloud security?", "o": ["VPNs", "Infrastructure as Code", "Cloud-native firewalls", "Software-Defined Networking (SDN)"], "c": 3, "e": "SDN ใช้การแบ่งส่วนเครือข่ายและความปลอดภัยแบบตั้งโปรแกรมได้ในสภาพแวดล้อมคลาวด์"}, {"d": "Security Operations", "q": "A system administrator wants to monitor failed login attempts centrally. Which system should be deployed?", "o": ["SIEM", "NAC", "DLP", "SOAR"], "c": 0, "e": "SIEM รวบรวมและวิเคราะห์ log รวมถึงความพยายามล็อกอินที่ล้มเหลว"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which attack occurs when a malicious actor manipulates a DNS server to redirect traffic to fraudulent websites?", "o": ["DNS Poisoning", "Domain Hijacking", "IP Spoofing", "ARP Poisoning"], "c": 0, "e": "DNS Poisoning คือการบิดเบือนข้อมูล DNS เพื่อเปลี่ยนเส้นทางผู้ใช้ไปยังเว็บไซต์อันตราย"}, {"d": "Security Program Management and Oversight", "q": "A company requires users to authenticate once and then have access to multiple systems without re-entering credentials. Which solution BEST meets this requirement?", "o": ["Federation", "LDAP", "Multifactor Authentication", "VPN"], "c": 0, "e": "Federation ช่วยให้ยืนยันตัวตนครั้งเดียวแล้วใช้งานได้หลายโดเมนหรือระบบ"}, {"d": "Security Operations", "q": "Which backup strategy would provide the QUICKEST recovery time in case of a server failure?", "o": ["Full Backup", "Differential Backup", "Incremental Backup", "Snapshot Backup"], "c": 3, "e": "Snapshot ช่วยให้ย้อนกลับระบบไปยังสถานะที่ปลอดภัยได้อย่างรวดเร็ว"}, {"d": "General Security Concepts", "q": "Which principle ensures that users are granted only the access necessary to perform their job functions?", "o": ["Separation of Duties", "Need-to-Know", "Least Privilege", "Role-Based Access Control"], "c": 2, "e": "Least Privilege คือการให้สิทธิ์ผู้ใช้เท่าที่จำเป็นต่อการทำงานเท่านั้น"}, {"d": "Security Architecture", "q": "An attacker captures data from a public Wi-Fi network without connecting to it. Which attack is being performed?", "o": ["Evil Twin", "On-Path Attack (MITM)", "Passive Eavesdropping", "Session Hijacking"], "c": 2, "e": "การดักฟังแบบ Passive คือการฟัง traffic เครือข่ายโดยไม่แทรกแซงหรือเชื่อมต่อ"}, {"d": "Security Operations", "q": "What is the PRIMARY goal of a business impact analysis (BIA)?", "o": ["Identify and prioritize critical business functions", "Analyze threats against network security", "Determine security control effectiveness", "Perform a penetration test"], "c": 0, "e": "BIA ใช้ระบุกระบวนการทางธุรกิจที่สำคัญและลำดับความสำคัญในการกู้คืน"}, {"d": "Security Operations", "q": "What type of backup method would you use if you want to store only the changes made since the last full backup AND you want fast recovery?", "o": ["Incremental", "Full", "Differential", "Snapshot"], "c": 2, "e": "Differential backup เก็บการเปลี่ยนแปลงตั้งแต่ full backup ครั้งล่าสุด และกู้คืนได้เร็วกว่า incremental"}, {"d": "Security Program Management and Oversight", "q": "Which of the following technologies BEST protects against on-path (Man-in-the-Middle) attacks?", "o": ["VLAN", "IPS", "VPN", "RAID"], "c": 2, "e": "VPN เข้ารหัส traffic ป้องกันการดักฟังและปลอมแปลงข้อมูลใน on-path attack"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "During which incident response phase would you isolate a compromised server?", "o": ["Recovery", "Containment", "Lessons Learned", "Identification"], "c": 1, "e": "Containment คือการจำกัดขอบเขตของเหตุการณ์ เช่น การตัดการเชื่อมต่อเซิร์ฟเวอร์ที่ถูกเจาะ"}, {"d": "Security Operations", "q": "What security principle is enforced when employees are required to use two different passwords for administrative and non-administrative accounts?", "o": ["Separation of Duties", "Least Privilege", "Defense in Depth", "Dual Control"], "c": 0, "e": "การแยกรหัสผ่านสำหรับบัญชี admin และบัญชีผู้ใช้ทั่วไป สนับสนุนหลัก Separation of Duties"}, {"d": "Security Operations", "q": "Which cloud model allows the customer the MOST control over the operating system and applications?", "o": ["SaaS", "PaaS", "IaaS", "FaaS"], "c": 2, "e": "ใน IaaS ลูกค้าเป็นผู้บริหารจัดการ OS แอปพลิเคชัน และการตั้งค่าต่างๆ เอง"}, {"d": "Security Operations", "q": "What is a PRIMARY security concern with Infrastructure as Code (IaC)?", "o": ["Outdated server hardware", "Rapid spread of misconfigurations", "Vendor lock-in", "Poor network performance"], "c": 1, "e": "ข้อผิดพลาดใน IaC สามารถแพร่กระจายการตั้งค่าที่ไม่ปลอดภัยไปทั่วระบบได้อย่างรวดเร็ว"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An attacker sends unsolicited Bluetooth messages to nearby devices. What attack is this?", "o": ["Bluesnarfing", "Bluebugging", "Bluejacking", "Bluespoofing"], "c": 2, "e": "Bluejacking คือการส่งข้อความ Bluetooth โดยไม่ได้รับอนุญาตไปยังอุปกรณ์ใกล้เคียง"}, {"d": "Security Architecture", "q": "Which of the following BEST describes a cold site?", "o": ["Operational data center ready for immediate use", "Empty facility with basic infrastructure like power and HVAC", "Fully equipped center with real-time data replication", "Offsite cloud backup provider"], "c": 1, "e": "Cold site มีโครงสร้างพื้นฐานพร้อม แต่ยังต้องติดตั้งอุปกรณ์และข้อมูลก่อนใช้งานได้จริง"}, {"d": "Security Architecture", "q": "Which access control method enforces strict policies based on security labels such as \"Confidential\" or \"Top Secret\"?", "o": ["DAC", "RBAC", "MAC", "ABAC"], "c": 2, "e": "MAC ใช้ป้ายกำกับ เช่น \"Top Secret\" เพื่อควบคุมการเข้าถึงอย่างเข้มงวด"}, {"d": "Security Operations", "q": "An employee plugs a personal USB drive into a company workstation without approval. What risk does this primarily represent?", "o": ["Insider Threat", "Phishing Attack", "Supply Chain Attack", "Business Email Compromise"], "c": 0, "e": "การเสียบอุปกรณ์ที่ไม่ได้รับอนุญาตเข้ากับระบบองค์กร ถือเป็นความเสี่ยงจาก Insider Threat"}, {"d": "General Security Concepts", "q": "Which protocol secures email communication by digitally signing and encrypting messages?", "o": ["TLS", "S/MIME", "SSH", "SSL"], "c": 1, "e": "S/MIME ใช้รักษาความปลอดภัยอีเมลด้วยลายเซ็นดิจิทัลและการเข้ารหัส"}, {"d": "Security Program Management and Oversight", "q": "Which type of control is implementing a security awareness training program?", "o": ["Physical", "Technical", "Preventive", "Administrative"], "c": 3, "e": "โปรแกรมอบรมด้านความปลอดภัยจัดเป็น Administrative Control (เกี่ยวข้องกับนโยบาย/ขั้นตอนปฏิบัติ)"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What is the MOST appropriate tool to use when wanting to aggregate, correlate, and analyze logs from multiple systems?", "o": ["VPN", "Firewall", "SIEM", "NAC"], "c": 2, "e": "SIEM รวบรวมและวิเคราะห์ log จากทั่วทั้งองค์กร"}, {"d": "Security Architecture", "q": "Which of the following would MOST help prevent unauthorized physical access to a data center?", "o": ["IDS", "Biometric Access Controls", "VPN", "Anti-Malware"], "c": 1, "e": "Biometric (เช่น ลายนิ้วมือ) เป็นมาตรการความปลอดภัยทางกายภาพที่มีประสิทธิภาพ"}, {"d": "Security Architecture", "q": "What security concept involves separating services and functions into isolated containers to minimize the attack surface?", "o": ["Microsegmentation", "Defense in Depth", "Least Privilege", "Data Sovereignty"], "c": 0, "e": "Microsegmentation แยก workload ออกจากกันเพื่อลดความเสี่ยงจากการเคลื่อนที่ในแนวขวางของผู้โจมตี"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An attacker successfully tricks a user into giving up login credentials via a fake login page. What attack technique was used?", "o": ["Spear Phishing", "Vishing", "Smishing", "Pharming"], "c": 0, "e": "Spear Phishing มุ่งเป้าไปที่บุคคลเฉพาะ ด้วยหน้าล็อกอินปลอมที่ปรับแต่งมาเฉพาะเจาะจง"}, {"d": "Security Operations", "q": "Which phase of the incident response process involves finding and removing malware from infected systems?", "o": ["Preparation", "Containment", "Eradication", "Lessons Learned"], "c": 2, "e": "Eradication คือขั้นตอนกำจัดมัลแวร์หรือช่องโหว่หลังจากที่ควบคุมสถานการณ์ (containment) แล้ว"}, {"d": "Security Program Management and Oversight", "q": "Which security tool uses signatures and anomaly detection to identify malicious network traffic?", "o": ["Firewall", "SIEM", "IDS", "DLP"], "c": 2, "e": "IDS ตรวจจับภัยคุกคามด้วยการจับคู่ signature หรือหาความผิดปกติ"}, {"d": "Security Operations", "q": "A company wants to ensure that employees can recover their files after a ransomware attack without paying the ransom. Which control BEST achieves this?", "o": ["IDS", "Regular Offline Backups", "VPN Access", "Email Filtering"], "c": 1, "e": "Offline backup ช่วยป้องกัน ransomware โดยมีข้อมูลสำรองที่ปลอดภัยไว้กู้คืน"}, {"d": "General Security Concepts", "q": "Which of the following is MOST critical to maintain when preserving digital evidence?", "o": ["Full Disk Encryption", "Legal Hold", "Chain of Custody", "Incident Triage"], "c": 2, "e": "Chain of Custody รักษาความสมบูรณ์ของหลักฐานเพื่อใช้ทางกฎหมาย"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "A company configures a cloud storage bucket and mistakenly leaves it open to the public. What type of vulnerability is this?", "o": ["Zero-Day", "Misconfiguration", "Insider Threat", "Malware Infection"], "c": 1, "e": "การเปิด cloud bucket ให้เข้าถึงสาธารณะโดยไม่ตั้งใจ คือตัวอย่างคลาสสิกของ Misconfiguration"}, {"d": "Security Architecture", "q": "Which layer of the OSI model does a firewall operate primarily at?", "o": ["Application", "Transport", "Network", "Data Link"], "c": 2, "e": "Firewall ทำงานหลักที่ Layer 3 (Network layer) จัดการ IP address และ traffic"}, {"d": "Security Program Management and Oversight", "q": "What security concept is enforced when two employees are required to approve a wire transfer above a certain dollar amount?", "o": ["Dual Control", "Least Privilege", "Discretionary Access Control", "Federation"], "c": 0, "e": "Dual Control กำหนดให้ต้องมีคนสองคนอนุมัติการกระทำที่สำคัญ"}, {"d": "Security Operations", "q": "Which cryptographic concept is used to ensure message integrity?", "o": ["Symmetric Encryption", "Asymmetric Encryption", "Hashing", "Key Exchange"], "c": 2, "e": "Hashing รักษาความถูกต้องของข้อมูล (integrity) ด้วยการสร้างลายนิ้วมือดิจิทัลที่ตายตัว"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What is the purpose of tokenization in data security?", "o": ["Encrypt sensitive data", "Replace sensitive data with non-sensitive placeholders", "Hash sensitive data", "Create a secure communication channel"], "c": 1, "e": "Tokenization แทนที่ข้อมูลจริงด้วย token ปลอมเพื่อปกป้องข้อมูลสำคัญ"}, {"d": "Security Program Management and Oversight", "q": "Which type of backup provides the FASTEST full system recovery after a catastrophic failure?", "o": ["Incremental", "Full Backup", "Differential", "Cloud Backup"], "c": 1, "e": "Full backup ช่วยให้กู้คืนได้เร็วที่สุด เพราะไม่ต้องพึ่งการรวมข้อมูลจากหลาย backup"}, {"d": "Security Operations", "q": "A team uses a sandbox environment to open suspicious files. What type of control is this?", "o": ["Preventive", "Detective", "Corrective", "Compensating"], "c": 0, "e": "Sandbox เป็นมาตรการเชิง preventive แยกไฟล์ต้องสงสัยออกก่อนที่จะสร้างความเสียหาย"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which of the following is a PRIMARY characteristic of a rootkit?", "o": ["Encrypts files and demands ransom", "Hides its existence by manipulating the OS", "Replicates itself across the network", "Sends unsolicited messages via Bluetooth"], "c": 1, "e": "Rootkit ซ่อนตัวเองโดยการแก้ไขการทำงานของ OS เพื่อหลบเลี่ยงการตรวจจับ"}, {"d": "Security Program Management and Oversight", "q": "An organization wants to minimize data loss during a disaster. Which metric defines the maximum amount of data loss acceptable?", "o": ["RTO", "MTD", "RPO", "ALE"], "c": 2, "e": "RPO (Recovery Point Objective) กำหนดปริมาณข้อมูลสูงสุดที่ยอมรับให้สูญหายได้"}, {"d": "Security Operations", "q": "Which wireless security protocol is considered obsolete and should NOT be used?", "o": ["WPA2", "WPA", "WPA3", "WEP"], "c": 3, "e": "WEP ล้าสมัยและไม่ปลอดภัย สามารถถูกเจาะได้ภายในไม่กี่นาที"}, {"d": "Security Operations", "q": "A system administrator is deploying security patches to all systems automatically after testing. This is an example of:", "o": ["Change Management", "Patch Management", "Hardening", "Incident Response"], "c": 1, "e": "Patch Management คือการวางแผนและติดตั้งอัปเดตอย่างเป็นระบบ"}, {"d": "Security Program Management and Oversight", "q": "What type of malware restricts access to a system until payment is made?", "o": ["Trojan", "Worm", "Spyware", "Ransomware"], "c": 3, "e": "Ransomware เข้ารหัสระบบ/ไฟล์และเรียกค่าไถ่เพื่อแลกกับการเข้าถึง"}, {"d": "Security Architecture", "q": "Which term describes isolating different departments in a network to improve security?", "o": ["Subnetting", "Virtualization", "Network Segmentation", "Packet Filtering"], "c": 2, "e": "Network Segmentation แยกส่วนต่างๆ ของเครือข่ายออกจากกันเพื่อควบคุมและความปลอดภัยที่ดีขึ้น"}, {"d": "Security Program Management and Oversight", "q": "What concept does the principle of \"never trust, always verify\" relate to?", "o": ["VPN", "Zero Trust", "Single Sign-On", "Role-Based Access Control"], "c": 1, "e": "Zero Trust ต้องมีการตรวจสอบยืนยันตัวตนเสมอ ไม่ว่าจะอยู่ตำแหน่งใดในเครือข่าย"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "Which tool is specifically designed to discover vulnerabilities in a system but NOT exploit them?", "o": ["Penetration Test", "Exploit Framework", "Vulnerability Scanner", "SIEM"], "c": 2, "e": "Vulnerability Scanner ตรวจหาจุดอ่อนโดยไม่มีการโจมตีจริง"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An employee receives a fake call pretending to be IT support asking for a password. What attack is this?", "o": ["Phishing", "Vishing", "Smishing", "Spear Phishing"], "c": 1, "e": "Vishing คือการฟิชชิงผ่านทางโทรศัพท์"}, {"d": "Security Operations", "q": "A user logs into an internal website using a badge and PIN. What authentication factors are being used?", "o": ["Something you know and something you are", "Something you know and something you have", "Something you have and something you are", "Two instances of something you know"], "c": 1, "e": "PIN = สิ่งที่คุณรู้ (something you know); บัตรพนักงาน = สิ่งที่คุณมี (something you have)"}, {"d": "General Security Concepts", "q": "Which technology allows secure remote access to a corporate network by encrypting all traffic?", "o": ["VLAN", "IDS", "VPN", "Proxy Server"], "c": 2, "e": "VPN เข้ารหัสข้อมูลระหว่างผู้ใช้ระยะไกลกับเครือข่ายองค์กร"}, {"d": "Security Program Management and Oversight", "q": "An employee leaves a confidential document on a shared printer. What kind of risk is this?", "o": ["Insider Threat", "Physical Security Risk", "Supply Chain Risk", "Malware Infection"], "c": 1, "e": "การทิ้งเอกสารลับไว้ในพื้นที่ใช้ร่วมกัน มีความเสี่ยงต่อการเข้าถึงโดยไม่ได้รับอนุญาต"}, {"d": "Security Operations", "q": "Which of the following would MOST effectively prevent malware from executing on endpoints?", "o": ["Application Allowlisting", "IDS Deployment", "SSL/TLS Encryption", "Role-Based Access Control"], "c": 0, "e": "Application Allowlisting อนุญาตให้รันได้เฉพาะแอปที่ได้รับการอนุมัติ ป้องกันมัลแวร์ที่ไม่รู้จัก"}, {"d": "Security Program Management and Oversight", "q": "A company requires that users verify their identity using a username, password, and fingerprint scan. This is an example of:", "o": ["Multi-Factor Authentication", "Federation", "SSO", "Kerberos Authentication"], "c": 0, "e": "การยืนยันตัวตนด้วยปัจจัยที่ต่างประเภทกันตั้งแต่สองอย่างขึ้นไป (รหัสผ่าน + ลายนิ้วมือ)"}, {"d": "Security Program Management and Oversight", "q": "Which security principle ensures that critical functions are divided among multiple people to prevent fraud?", "o": ["Least Privilege", "Separation of Duties", "Job Rotation", "Dual Control"], "c": 1, "e": "ไม่มีบุคคลใดควบคุมกระบวนการสำคัญได้ทั้งหมดเพียงคนเดียว ช่วยป้องกันการทุจริต"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "What technique is used by attackers to overload a server with requests, causing service disruption?", "o": ["SQL Injection", "DNS Poisoning", "DDoS Attack", "ARP Spoofing"], "c": 2, "e": "DDoS คือการโจมตีแบบกระจาย ทำให้เซิร์ฟเวอร์ท่วมท้นด้วย traffic จำนวนมาก"}, {"d": "Security Architecture", "q": "Which of the following devices inspects and filters packets based on application-level data?", "o": ["Traditional Firewall", "Proxy Server", "Next-Generation Firewall (NGFW)", "Router"], "c": 2, "e": "NGFW ตรวจสอบแพ็กเก็ตเชิงลึก รวมถึงข้อมูลระดับ application"}, {"d": "General Security Concepts", "q": "Which method ensures that a user cannot deny performing an action, such as sending an email?", "o": ["Non-Repudiation", "Availability", "Encryption", "Role-Based Access Control"], "c": 0, "e": "Non-repudiation ช่วยยืนยันหลักฐานการกระทำ เช่น การส่งอีเมล"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An attacker exploits a race condition in a web application. What is this an example of?", "o": ["Improper Input Handling", "Application Logic Flaw", "Secure Coding Practice", "Race Attack Vulnerability"], "c": 3, "e": "Race condition คือช่องโหว่ที่เกิดจากปัญหาด้านจังหวะเวลาในแอปพลิเคชัน"}, {"d": "Security Architecture", "q": "Which of the following is a benefit of implementing Infrastructure as Code (IaC) securely?", "o": ["Manual configuration of servers", "Consistent and repeatable deployments", "Physical separation of networks", "Encrypted communication tunnels"], "c": 1, "e": "IaC ช่วยให้การตั้งค่าโครงสร้างพื้นฐานเป็นไปอย่างปลอดภัย อัตโนมัติ และสม่ำเสมอ"}, {"d": "Security Operations", "q": "Which of the following BEST describes the primary benefit of implementing a SIEM system?", "o": ["Blocking unauthorized access attempts", "Preventing malware infections", "Aggregating and analyzing security logs centrally", "Encrypting sensitive data at rest"], "c": 2, "e": "ระบบ SIEM รวบรวม log จากหลายแหล่งเพื่อวิเคราะห์แบบรวมศูนย์"}, {"d": "Security Operations", "q": "What is the MAIN purpose of a DLP (Data Loss Prevention) system?", "o": ["Detect malware signatures", "Monitor unauthorized data transfers", "Block phishing emails", "Scan networks for vulnerabilities"], "c": 1, "e": "DLP ป้องกันไม่ให้ข้อมูลสำคัญรั่วไหลออกนอกเครือข่าย"}, {"d": "Security Program Management and Oversight", "q": "An attacker tricks a user into resetting their password by spoofing a legitimate password reset page. What kind of attack is this?", "o": ["Phishing", "SQL Injection", "Session Hijacking", "Privilege Escalation"], "c": 0, "e": "หน้าล็อกอินปลอมที่ใช้หลอกรีเซ็ตรหัสผ่าน คือรูปแบบคลาสสิกของการฟิชชิง"}, {"d": "Security Operations", "q": "Which backup method copies only the files that have changed since the last backup, no matter what type it was?", "o": ["Full", "Incremental", "Differential", "Snapshot"], "c": 1, "e": "Incremental backup เก็บการเปลี่ยนแปลงตั้งแต่ backup ครั้งล่าสุด ไม่ว่าจะเป็น full หรือ incremental ก็ตาม"}, {"d": "Security Program Management and Oversight", "q": "What does the principle of Defense in Depth emphasize?", "o": ["Using multiple layers of security controls", "Deploying only firewalls at the network perimeter", "Using two-factor authentication for all logins", "Relying primarily on SIEM alerts"], "c": 0, "e": "Defense in Depth หมายถึงการไม่มีจุดล้มเหลวเพียงจุดเดียว (no single point of failure)"}, {"d": "Security Program Management and Oversight", "q": "Which of the following is an example of an administrative control?", "o": ["Fire extinguisher in server room", "Firewall rules", "Security awareness policy", "Encryption of data at rest"], "c": 2, "e": "Administrative Control ครอบคลุมนโยบายและขั้นตอนปฏิบัติต่างๆ"}, {"d": "Security Operations", "q": "A SOC analyst notices large outbound traffic to an unknown IP. What is the BEST immediate action?", "o": ["Shut down all network switches", "Disconnect affected systems", "Reboot affected systems", "Call the ISP"], "c": 1, "e": "ควรตัดการเชื่อมต่อทันทีเพื่อป้องกันไม่ให้ข้อมูลรั่วไหลเพิ่มเติม"}, {"d": "Security Program Management and Oversight", "q": "Which term describes unauthorized commands sent from a user's browser to a trusted website?", "o": ["Cross-Site Scripting (XSS)", "SQL Injection", "Command Injection", "Cross-Site Request Forgery (CSRF)"], "c": 3, "e": "CSRF หลอกให้ผู้ใช้กระทำการบางอย่างโดยไม่ตั้งใจผ่านคำสั่งที่ไม่ได้รับอนุญาต"}, {"d": "Security Program Management and Oversight", "q": "Which of the following technologies enables a single identity to access multiple applications across different domains?", "o": ["Multifactor Authentication", "Federation", "VPN", "Zero Trust"], "c": 1, "e": "Federation ช่วยให้ล็อกอินครั้งเดียวแล้วใช้งานได้ข้ามหลายองค์กร/ระบบ"}, {"d": "Security Operations", "q": "What is the FIRST action to take when you detect an active ransomware infection?", "o": ["Pay the ransom", "Disconnect infected systems from the network", "Run antivirus scan", "Contact cloud backup provider"], "c": 1, "e": "ต้องแยกระบบที่ติดเชื้อออกจากเครือข่ายก่อนเป็นอันดับแรก เพื่อหยุดการแพร่กระจายของ ransomware"}, {"d": "General Security Concepts", "q": "Which of the following terms describes preventing unauthorized access by forcing a user to authenticate again after a period of inactivity?", "o": ["Session Lock", "Password Complexity", "Single Sign-On", "Federation"], "c": 0, "e": "Session Lock บังคับให้ยืนยันตัวตนใหม่หลังจากไม่มีการใช้งานช่วงหนึ่ง เพื่อป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต"}, {"d": "Security Program Management and Oversight", "q": "What type of test involves assessing the physical, administrative, and technical safeguards without exploiting vulnerabilities?", "o": ["Vulnerability Scan", "Penetration Test", "Risk Assessment", "Business Impact Analysis"], "c": 2, "e": "Risk Assessment ประเมินมาตรการป้องกันโดยไม่มีการโจมตีช่องโหว่จริง"}, {"d": "General Security Concepts", "q": "Which component is critical for ensuring confidentiality when sending sensitive data across the Internet?", "o": ["Hashing", "Encryption", "Load Balancing", "IDS"], "c": 1, "e": "การเข้ารหัส (Encryption) ปกป้องความลับของข้อมูลระหว่างการส่งผ่าน"}, {"d": "Security Architecture", "q": "What is the purpose of implementing redundant power supplies in servers?", "o": ["Improve encryption performance", "Increase network bandwidth", "Enhance system availability", "Provide faster processing"], "c": 2, "e": "แหล่งจ่ายไฟสำรอง (redundant power supply) ช่วยให้เซิร์ฟเวอร์ทำงานต่อได้แม้ไฟดับ"}, {"d": "Security Program Management and Oversight", "q": "Which of the following MOST accurately defines tokenization?", "o": ["Encrypting all data in a database", "Replacing sensitive data elements with a unique identifier", "Hashing user passwords before storage", "Obfuscating source code to protect intellectual property"], "c": 1, "e": "Tokenization แทนที่ข้อมูลจริงด้วย token ที่ปลอดภัยและไม่มีความหมายในตัวเอง"}, {"d": "Threats, Vulnerabilities, and Mitigations", "q": "An attacker uses a vulnerability in a software program that has not yet been patched. What kind of attack is this?", "o": ["Zero-Day", "Man-in-the-Middle", "Cross-Site Scripting", "Phishing"], "c": 0, "e": "Zero-day คือการโจมตีที่ใช้ประโยชน์จากช่องโหว่ที่ยังไม่มีใครรู้หรือยังไม่ได้แพตช์"}, {"d": "Security Program Management and Oversight", "q": "What is the BEST method to mitigate the impact of social engineering attacks?", "o": ["Install firewalls", "Security Awareness Training", "Regular Penetration Testing", "Conduct Full Backups"], "c": 1, "e": "การอบรมสร้างความตระหนักช่วยให้ผู้ใช้จำแนกและหลีกเลี่ยง social engineering ได้"}, {"d": "Security Operations", "q": "Which type of malware is specifically designed to provide persistent, hidden access to a compromised system?", "o": ["Ransomware", "Trojan", "Rootkit", "Worm"], "c": 2, "e": "Rootkit คงการเข้าถึงระบบแบบซ่อนตัวและถาวรด้วยการฝังตัวลึกในระบบ"}, {"d": "Security Program Management and Oversight", "q": "A backup strategy uses the Grandfather-Father-Son method. What is this primarily designed to achieve?", "o": ["Ensure zero data loss", "Maintain multiple historical versions of backups", "Accelerate disaster recovery", "Improve real-time replication"], "c": 1, "e": "การหมุนเวียนแบบ Grandfather-Father-Son ช่วยรักษาประวัติ backup หลายเวอร์ชันไว้"}, {"d": "General Security Concepts", "q": "What security tool intercepts and controls traffic between a user and the Internet to enforce company policies?", "o": ["Firewall", "VPN", "Proxy Server", "Load Balancer"], "c": 2, "e": "Proxy Server ทำหน้าที่กรอง ควบคุม และบันทึก traffic อินเทอร์เน็ตของผู้ใช้ เพื่อบังคับใช้นโยบายองค์กร"}];
 
-function renderQuestions() {
-    const container = document.getElementById('questions-container');
-    const domainFilter = document.getElementById('domain-filter').value;
-    const searchKeyword = document.getElementById('search-input').value.toLowerCase();
-    
-    container.innerHTML = '';
+let mode = 'quiz';
+let order = [];
+let idx = 0;
+let score = 0;
+let answered = false;
 
-    const filtered = questions.filter(item => {
-        const matchDomain = (domainFilter === 'all') || item.domain.startsWith(domainFilter);
-        const matchSearch = item.q.toLowerCase().includes(searchKeyword) || 
-                            item.options.some(opt => opt.toLowerCase().includes(searchKeyword)) ||
-                            item.explanation.toLowerCase().includes(searchKeyword);
-        return matchDomain && matchSearch;
-    });
+function shuffle(n){
+  const arr = Array.from({length:n}, (_,i)=>i);
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
 
-    if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">No questions found matching your criteria.</div>';
-        return;
+function startQuiz(){
+  order = shuffle(QUESTIONS.length);
+  idx = 0; score = 0; answered = false;
+  renderQuiz();
+}
+
+function renderQuiz(){
+  const view = document.getElementById('quizView');
+  if(idx >= order.length){
+    view.innerHTML = `
+      <div class="card scorecard">
+        <div class="big">${score} / ${order.length}</div>
+        <div class="label">${Math.round(score/order.length*100)}% correct</div>
+        <div class="navrow" style="justify-content:center; margin-top:24px;">
+          <button class="btn" onclick="startQuiz()">Try again</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const q = QUESTIONS[order[idx]];
+  const pct = Math.round((idx)/order.length*100);
+  view.innerHTML = `
+    <div class="card">
+      <div class="progress-row"><span>Question ${idx+1} of ${order.length}</span><span>Score: ${score}</span></div>
+      <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <div class="qtext">${q.q}</div>
+      <div id="opts"></div>
+      <div id="explainBox" class="explain"></div>
+      <div class="navrow">
+        <span></span>
+        <button class="btn" id="nextBtn" disabled onclick="nextQ()">Next</button>
+      </div>
+    </div>`;
+  answered = false;
+  const optsDiv = document.getElementById('opts');
+  q.o.forEach((opt, i)=>{
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = opt;
+    b.onclick = ()=> selectOpt(i, q);
+    optsDiv.appendChild(b);
+  });
+}
+
+function selectOpt(i, q){
+  if(answered) return;
+  answered = true;
+  const opts = document.querySelectorAll('#opts .opt');
+  opts.forEach((b, bi)=>{
+    b.disabled = true;
+    if(bi === q.c) b.classList.add('correct');
+    else if(bi === i) b.classList.add('wrong');
+  });
+  if(i === q.c) score++;
+  const eb = document.getElementById('explainBox');
+  eb.textContent = q.e;
+  eb.classList.add('show');
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQ(){
+  idx++;
+  renderQuiz();
+}
+
+function renderStudy(){
+  const view = document.getElementById('studyView');
+  let html = '';
+  let lastDomain = '';
+  QUESTIONS.forEach((q, i)=>{
+    if(q.d !== lastDomain){
+      html += `<div class="domain-head">${q.d}</div>`;
+      lastDomain = q.d;
     }
-
-    filtered.forEach(q => {
-        const card = document.createElement('div');
-        card.className = 'question-card';
-        card.id = `q-${q.num}`;
-
-        const userAns = userAnswers[q.num];
-        const isAnswered = userAns !== undefined;
-
-        // Clean correct answer letter for matching (e.g., 'C' from 'C) Digital Signature' or multiple)
-        let correctOptions = [];
-        if (q.answer.includes('and')) {
-            // Handle multiple answers like "B) Email Filtering and C) Security Awareness Training"
-            const matches = q.answer.match(/[A-D]\)/g);
-            if (matches) correctOptions = matches.map(m => m[0]);
-        } else {
-            correctOptions = [q.answer.charAt(0)];
-        }
-
-        let optionsHtml = '';
-        q.options.forEach(opt => {
-            const optLetter = opt.charAt(0);
-            let optClass = 'option-btn';
-            
-            if (isAnswered) {
-                optClass += ' locked';
-                if (optLetter === userAns) {
-                    if (correctOptions.includes(optLetter)) {
-                        optClass += ' selected-correct';
-                    } else {
-                        optClass += ' selected-incorrect';
-                    }
-                } else if (correctOptions.includes(optLetter)) {
-                    optClass += ' reveal-correct';
-                }
-            } else if (showAll && correctOptions.includes(optLetter)) {
-                optClass += ' reveal-correct';
-            }
-
-            optionsHtml += `
-                <button class="${optClass}" onclick="handleSelect(${q.num}, '${optLetter}')">
-                    ${opt}
-                </button>
-            `;
-        });
-
-        const isExpVisible = showAll || isAnswered;
-
-        card.innerHTML = `
-            <div class="q-header">
-                <span class="q-num">Question #${q.num}</span>
-                <span class="q-tag">${q.domain}</span>
-            </div>
-            <div class="q-title">${q.q}</div>
-            <div class="options-list">
-                ${optionsHtml}
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <button class="btn-reveal" onclick="toggleSingleAnswer(${q.num})">
-                    ${isExpVisible ? 'Hide Explanation' : 'Show Answer & Explanation'}
-                </button>
-            </div>
-            <div class="explanation-box ${isExpVisible ? 'show' : ''}" id="exp-${q.num}">
-                <strong>Correct Answer: ${q.answer}</strong>
-                <div>${q.explanation}</div>
-            </div>
-        `;
-
-        container.appendChild(card);
-    });
-
-    updateStats();
+    html += `
+      <div class="study-item">
+        <div class="study-num">Q${i+1}</div>
+        <div class="study-q">${q.q}</div>
+        <div class="study-a">Answer: ${q.o[q.c]}</div>
+        <div class="study-e">${q.e}</div>
+      </div>`;
+  });
+  view.innerHTML = `<div class="card">${html}</div>`;
 }
 
-function handleSelect(qNum, selectedLetter) {
-    if (userAnswers[qNum] !== undefined) return; // already answered
-    userAnswers[qNum] = selectedLetter;
-    renderQuestions();
-}
-
-function toggleSingleAnswer(qNum) {
-    const expBox = document.getElementById(`exp-${qNum}`);
-    if (expBox) {
-        expBox.classList.toggle('show');
-    }
-}
-
-function updateStats() {
-    const answeredKeys = Object.keys(userAnswers);
-    const answeredCount = answeredKeys.length;
-    document.getElementById('answered-count').innerText = answeredCount;
-
-    if (answeredCount === 0) {
-        document.getElementById('score-val').innerText = '0%';
-        return;
-    }
-
-    let correctCount = 0;
-    answeredKeys.forEach(numStr => {
-        const qNum = parseInt(numStr);
-        const q = questions.find(item => item.num === qNum);
-        if (q) {
-            const userChoice = userAnswers[qNum];
-            if (q.answer.includes('and')) {
-                if (q.answer.includes(userChoice + ')')) correctCount++;
-            } else if (q.answer.startsWith(userChoice)) {
-                correctCount++;
-            }
-        }
-    });
-
-    const pct = Math.round((correctCount / answeredCount) * 100);
-    document.getElementById('score-val').innerText = `${pct}% (${correctCount}/${answeredCount})`;
-}
-
-document.getElementById('domain-filter').addEventListener('change', renderQuestions);
-document.getElementById('search-input').addEventListener('input', renderQuestions);
-
-document.getElementById('btn-toggle-all').addEventListener('click', () => {
-    showAll = !showAll;
-    document.getElementById('btn-toggle-all').innerText = showAll ? 'Hide All Answers' : 'Show All Answers';
-    renderQuestions();
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('quizView').style.display = mode==='quiz' ? 'block':'none';
+    document.getElementById('studyView').style.display = mode==='study' ? 'block':'none';
+    if(mode==='study') renderStudy();
+  });
 });
 
-document.getElementById('btn-reset').addEventListener('click', () => {
-    if (confirm('Do you want to reset your practice session?')) {
-        userAnswers = {};
-        showAll = false;
-        document.getElementById('btn-toggle-all').innerText = 'Show All Answers';
-        renderQuestions();
-    }
-});
-
-// Initial render
-renderQuestions();
+startQuiz();
 </script>
 </body>
 </html>
